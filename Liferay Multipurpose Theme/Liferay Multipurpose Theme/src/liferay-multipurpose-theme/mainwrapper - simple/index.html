@@ -1,0 +1,84 @@
+<div liferay-component-type="component" liferay-component-name="mainwrapper"
+     class="main-content-wrapper d-flex clearfix">
+
+
+    <div class="mobile-nav">
+
+        <div class="amado-navbar-brand">
+            <div liferay-tag="logo" class="d-flex"><a class="navbar-brand" href="${themeDisplay.getURLHome()}"><img src="${htmlUtil.escape(themeDisplay.getCompanyLogo())}" alt="${company.name}" class="img-fluid"> </a></div>
+        </div>
+
+        <div class="amado-navbar-toggler" liferay-tag="skip">
+            <span></span><span></span><span></span>
+        </div>
+    </div>
+
+
+    <header class="header-area clearfix" style="padding-left: 2rem;padding-right: 2rem;">
+
+        <div class="nav-close" liferay-tag="skip">
+            <i class="fa fa-close" aria-hidden="true"></i>
+        </div>
+
+
+        <div class="logo mb-5">
+            <div class="d-flex" liferay-tag="logo"><a class="navbar-brand" href="${themeDisplay.getURLHome()}"><img src="${htmlUtil.escape(themeDisplay.getCompanyLogo())}" alt="${company.name}" class="img-fluid"> </a></div>
+        </div>
+
+
+        <div class="cart-fav-search mb-5 tools">
+            <div class="d-flex justify-content-center mb-2">
+                <div liferay-tag="avatar" class="d-flex mr-1">[@liferay.user_personal_bar /]</div>
+                <div liferay-tag="skip" class="search-nav roundButton mr-1">[@clay["icon"] symbol="search" /]</div>
+            </div>
+            <div class="d-flex justify-content-around mb-2">
+                <div liferay-tag="language">[@liferay.languages /]</div>
+            </div>
+        </div>
+
+
+
+        <nav class="amado-nav" liferay-tag="navigation">[#attempt]
+            [#assign navMenuID = configuration.navigationMenu?number]
+            [#assign templateId = configuration.navigationMenuTemplate?number]
+            [#assign ddmTemplateLocalService =
+            serviceLocator.findService("com.liferay.dynamic.data.mapping.service.DDMTemplateLocalService")]
+            [#assign template = ddmTemplateLocalService.fetchDDMTemplate(templateId)]
+            [#assign siteNavigationMenuLocalService =
+            serviceLocator.findService("com.liferay.site.navigation.service.SiteNavigationMenuLocalService")]
+            [#assign navigationMenu = siteNavigationMenuLocalService.fetchSiteNavigationMenu(navMenuID)]
+            [@liferay_site_navigation["navigation-menu"]
+            ddmTemplateGroupId=template.groupId
+            ddmTemplateKey=template.templateKey
+            displayDepth=1
+            expandedLevels="auto"
+            rootItemType="absolute"
+            rootItemLevel=0
+            siteNavigationMenuId=navigationMenu.siteNavigationMenuId /]
+            [#recover]
+            <li class="nav-item">
+              <span class="nav-link">
+                            <small>Menu is temporarily unavailable, please make sure to enable service locator and set a valid navigation menu id and navigation menu template in the fragment configurations</small>
+                            </span>
+            </li>
+            [/#attempt]</nav>
+
+        <div class="amado-btn-group mt-30 mb-100 w-100" liferay-tag="dropzone"><lfr-drop-zone class='w-100'></lfr-drop-zone></div>
+
+        <div class="bottom" >
+            <div class="social-info d-flex justify-content-between" liferay-tag="skip">
+                <a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
+                <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+            </div>
+        </div>
+
+    </header>
+
+	<div class="replaceme">
+		<lfr-drop-zone></lfr-drop-zone>
+	</div>
+    
+   
+</div>

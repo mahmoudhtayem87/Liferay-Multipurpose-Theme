@@ -1,0 +1,34 @@
+<style>
+:root
+{ --primary:${configuration.primary.rgbValue};
+--secondary:${configuration.secondary.rgbValue};
+--white:${configuration.white.rgbValue};
+--darkslategrey:${configuration.darkslategrey.rgbValue};
+--whitesmoke:${configuration.whitesmoke.rgbValue};
+--lightgrey:${configuration.lightgrey.rgbValue};
+--silver:${configuration.silver.rgbValue};
+--dimgray:${configuration.dimgray.rgbValue};
+--orange:${configuration.orange.rgbValue};
+--limegreen:${configuration.limegreen.rgbValue};
+--blue:${configuration.blue.rgbValue};
+--crimson:${configuration.crimson.rgbValue};
+--khaki:${configuration.khaki.rgbValue};
+--tomato:${configuration.tomato.rgbValue};
+--gray:${configuration.gray.rgbValue};
+ 
+}
+</style> 
+[#assign isEdit=false]
+            [#if themeDisplay.isSignedIn()]
+            [#assign req = request.getRequest()]
+            [#assign originalRequest = portalUtil.getOriginalServletRequest(req)]
+            [#if originalRequest.getParameter("p_l_mode")??]
+            [#assign isEdit=true]
+            [/#if]
+            [/#if]
+            
+            [#if isEdit]
+            <div class="alert alert-info p-4">
+              Fragmented Theme Style Book - Header Area
+            </div>
+            [/#if]

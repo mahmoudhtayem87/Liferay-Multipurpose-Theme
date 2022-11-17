@@ -1,0 +1,70 @@
+<div class="search-total-label mb-4">
+    <#if searchContainer.getTotal() == 1>
+        ${languageUtil.format(locale, "x-result-for-x", [searchContainer.getTotal(), "<strong>" + htmlUtil.escape(searchResultsPortletDisplayContext.getKeywords()) + "</strong>"], false)}
+    <#else>
+        ${languageUtil.format(locale, "x-results-for-x", [searchContainer.getTotal(), "<strong>" + htmlUtil.escape(searchResultsPortletDisplayContext.getKeywords()) + "</strong>"], false)}
+    </#if>
+</div>
+<style>
+    <#list entries as entry>
+    .delay-${entry?index} {
+        animation-delay: ${0.5 * (entry?index + 1)}s
+    }
+
+    </#list>
+</style>
+
+
+<#if entries?has_content>
+    <#list entries as entry>
+        <a class="right-side-card mb-4 animate__animated animate__fadeInRight delay-${entry?index}"
+           href="${entry.getViewURL()}">
+            <div class="lib-panel mb-4">
+                <div class="row box-shadow">
+                    <div class="col-md-8 p-4">
+                        <div class="lib-row lib-header mb-4">
+                            <h3>${entry.getTitle()}</h3>
+                            <div class="lib-header-seperator"></div>
+                        </div>
+                        <div class="lib-row lib-desc">
+                            <#if entry.isContentVisible()>
+                                <div>
+                                    ${entry.getContent()}
+                                </div>
+                            </#if>
+
+                            <div class="mt-2">
+                                ${entry.getHighlightedTitle()}
+                            </div>
+                        </div>
+                    </div>
+                    <#if entry.isThumbnailVisible()>
+                        <div class="col-md-4 card-image" style="background-image:url(${entry.getThumbnailURLString()})">
+                        </div>
+                    <#elseif entry.isUserPortraitVisible() && stringUtil.equals(entry.getClassName(), userClassName)>
+                        <div class="col-md-4 card-image d-flex" style="background-color: var(--secondary)">
+                            <div class="m-auto d-flex icon">
+                                <@liferay_ui["user-portrait"] userId=entry.getAssetEntryUserId() />
+                            </div>
+                        </div>
+                    <#elseif entry.isIconVisible()>
+                        <div class="col-md-4 card-image d-flex" style="background-color: var(--secondary)">
+                            <div class="m-auto icon">
+                                <@clay.icon symbol="${entry.getIconId()}" />
+                            </div>
+                        </div>
+                    </#if>
+                </div>
+            </div>
+        </a>
+    </#list>
+</#if>
+
+
+<style>
+    .lib-panel .icon * {
+        font-size: 6rem;
+        margin: auto;
+        color: var(--light);
+    }
+</style>

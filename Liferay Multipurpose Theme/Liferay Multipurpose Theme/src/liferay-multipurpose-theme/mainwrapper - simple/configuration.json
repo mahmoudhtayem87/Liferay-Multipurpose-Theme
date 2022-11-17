@@ -1,0 +1,1 @@
+{"fieldSets":[{"fields":[{"name":"navigationMenu","label":"Navigation Menu ID","type":"text","typeOptions":{"placeholder":"Placeholder"},"dataType":"string","defaultValue":""},{"name":"navigationMenuTemplate","label":"Navigation Menu Template ID","type":"text","typeOptions":{"placeholder":"Placeholder"},"dataType":"string","defaultValue":""}]}]}
